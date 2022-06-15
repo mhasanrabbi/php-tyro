@@ -2,6 +2,7 @@
 
 /**
  * The is_integer() function is used to test whether the type of the specified variable is an integer or not.
+ * boolean value
  */
 
 $var_name1 = 678;
