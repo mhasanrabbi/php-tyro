@@ -47,7 +47,7 @@ $students = [
 
 foreach ($students as $student) {
     foreach ($student as $key => $value) {
-        if (is_array($value) && $address = 'address') {
+        if (is_array($value) && $key = 'address') {
             foreach ($value as $key => $value) {
                 if ($key  == 'district' && $value == 'Dhaka') {
                     echo $student['name'] . ' is from Dhaka <br>';
