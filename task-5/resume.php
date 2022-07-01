@@ -1,20 +1,24 @@
 <?php
 
 $person = [
-    'basic_info' => [
-        'name' => 'Md Mahmud Hasan Rabbi',
-        'address' => 'North Mugda, Sabujbagh, Basabo, Dhaka-1214',
-        'email' => 'mdmahmudhasanrabbi@gmail.com',
-        'mobile' => '+8801323570067'
+    [
+        'basic_info' => [
+            'name' => 'Md Mahmud Hasan Rabbi',
+            'address' => 'North Mugda, Sabujbagh, Basabo, Dhaka-1214',
+            'email' => 'mdmahmudhasanrabbi@gmail.com',
+            'mobile' => '+8801323570067'
+        ]
     ],
     [
         'label' => [
-            'exam' => 'Exam',
-            'board' => 'Board',
-            'group' => 'Group',
-            'result' => 'Result',
-            'institute' => 'Institute',
-            'passing_year' => 'Passing Year',
+            [
+                'exam' => 'Exam',
+                'board' => 'Board/University',
+                'group' => 'Group',
+                'result' => 'Result',
+                'institute' => 'Institute',
+                'passing_year' => 'Passing Year',
+            ]
         ]
     ],
     [
@@ -32,7 +36,7 @@ $person = [
                 'exam' => 'HSC',
                 'board' => 'Dhaka',
                 'group' => 'Science',
-                'result' => 'A',
+                'result' => '4.58/5.00',
                 'institute' => 'Dhaka College',
                 'passing_year' => '2017'
             ],
@@ -40,7 +44,7 @@ $person = [
                 'exam' => 'SSC',
                 'board' => 'Dhaka',
                 'group' => 'Science',
-                'result' => 'A+',
+                'result' => '5.00/5.00',
                 'institute' => 'Motijheel Govt. Boys High School',
                 'passing_year' => '2015'
             ]
@@ -70,20 +74,20 @@ $person = [
     <header>
         <div>
             <h1>
-                <?php
-                echo $person['basic_info']['name'];
-                ?>
+                <?php echo $person[0]['basic_info']['name']; ?>
             </h1>
             <p>
-                <?php echo $person['basic_info']['address']; ?>
+                <?php echo $person[0]['basic_info']['address']; ?>
             </p>
             <p>
                 Email:
                 <a href="mailto:mdmahmudhasanrabbi@gmail.com">
-                    <?php echo $person['basic_info']['name'] ?>
+                    <?php echo $person[0]['basic_info']['email'] ?>
                 </a>
             </p>
-            <p>Mobile: <?php echo $person['basic_info']['mobile'] ?></p>
+            <p>Mobile:
+                <?php echo $person[0]['basic_info']['mobile'] ?>
+            </p>
         </div>
         <!-- <img class="cv__img" src="image.JPG" alt="Md Mahmud Hasan Rabbi" /> -->
     </header>
@@ -129,7 +133,12 @@ $person = [
                             if (is_array($value) && $key == 'label') {
                                 foreach ($value as $key => $value) {
                                     // var_dump($value);
-                                    echo "<th>$value</th>";
+                                    echo "<th>" . $value['exam'] . "</th>";
+                                    echo "<th>" . $value['board'] . "</th>";
+                                    echo "<th>" . $value['group'] . "</th>";
+                                    echo "<th>" . $value['result'] . "</th>";
+                                    echo "<th>" . $value['institute'] . "</th>";
+                                    echo "<th>" . $value['passing_year'] . "</th>";
                                 }
                             }
                         }
@@ -140,15 +149,15 @@ $person = [
                 foreach ($person as $p) {
                     foreach ($p as $key => $value) {
                         if (is_array($value) && $key == 'educational_info') {
-                            foreach ($value as $v) {
-                                // var_dump($v);
+                            foreach ($value as $key => $value) {
+                                // var_dump($valye);
                                 echo '<tr align="center">';
-                                echo '<td>' . $v['exam'] . '</td>';
-                                echo '<td>' . $v['board'] . '</td>';
-                                echo '<td>' . $v['group'] . '</td>';
-                                echo '<td>' . $v['result'] . '</td>';
-                                echo '<td>' . $v['institute'] . '</td>';
-                                echo '<td>' . $v['passing_year'] . '</td>';
+                                echo '<td>' . $value['exam'] . '</td>';
+                                echo '<td>' . $value['board'] . '</td>';
+                                echo '<td>' . $value['group'] . '</td>';
+                                echo '<td>' . $value['result'] . '</td>';
+                                echo '<td>' . $value['institute'] . '</td>';
+                                echo '<td>' . $value['passing_year'] . '</td>';
                                 echo '</tr>';
                             }
                         }
