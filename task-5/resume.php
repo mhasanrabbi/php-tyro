@@ -55,6 +55,7 @@ $person = [
         'travel' => 'Traveling',
         'music' => 'Listening to Music',
         'movies' => 'Watching Movies',
+        'series' => 'Watching TV Series',
         'sports' => 'Playing Sports',
     ],
     'games' => [
@@ -147,6 +148,13 @@ $person = [
                             echo '<th>' . $label['institute'] . '</th>';
                             echo '<th>' . $label['passing_year'] . '</th>';
                         }
+                    } else {
+                        echo '<th>Exam</th>';
+                        echo '<th>Board/University</th>';
+                        echo '<th>Group</th>';
+                        echo '<th>Result</th>';
+                        echo '<th>Institute</th>';
+                        echo '<th>Passing Year</th>';
                     }
                     // foreach ($person['th_label'] as $key => $value) {
                     //     foreach ($value as $key => $value) {
@@ -164,6 +172,8 @@ $person = [
                         }
                         echo '</tr>';
                     }
+                } else {
+                    echo '<tr align="center"><td colspan="6">No Data Found</td></tr>';
                 }
                 // foreach ($person as $p) {
                 //     foreach ($p as $key => $value) {
@@ -253,6 +263,8 @@ $person = [
                     foreach ($person['languages'] as $lang) {
                         echo '<li>' . $lang . '</li>';
                     }
+                } else {
+                    echo '<li>No Languages</li>';
                 }
                 ?>
             </ul>
@@ -268,6 +280,8 @@ $person = [
                     foreach ($person['hobbies'] as $hobby) {
                         echo '<li>' . $hobby . '</li>';
                     }
+                } else {
+                    echo '<li>No Hobbies</li>';
                 }
                 ?>
             </ul>
@@ -283,6 +297,8 @@ $person = [
                         // var_dump($game);
                         echo '<li>' . $game . '</li>';
                     }
+                } else {
+                    echo '<li>No Games</li>';
                 }
                 ?>
             </ul>
