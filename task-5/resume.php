@@ -1,54 +1,66 @@
 <?php
 
 $person = [
-    [
-        'basic_info' => [
-            'name' => 'Md Mahmud Hasan Rabbi',
-            'address' => 'North Mugda, Sabujbagh, Basabo, Dhaka-1214',
-            'email' => 'mdmahmudhasanrabbi@gmail.com',
-            'mobile' => '+8801323570067'
-        ]
+    'basic_info' => [
+        'name' => 'Md Mahmud Hasan Rabbi',
+        'address' => 'North Mugda, Sabujbagh, Basabo, Dhaka-1214',
+        'email' => 'mdmahmudhasanrabbi@gmail.com',
+        'mobile' => '+8801323570067',
+        'img' => 'img/profile.JPG',
     ],
-    [
-        'label' => [
-            [
-                'exam' => 'Exam',
-                'board' => 'Board/University',
-                'group' => 'Group',
-                'result' => 'Result',
-                'institute' => 'Institute',
-                'passing_year' => 'Passing Year',
-            ]
-        ]
-    ],
-    [
-        'educational_info' =>
+    'th_label' => [
         [
-            [
-                'exam' => 'BBA',
-                'board' => 'National University, Bangladesh',
-                'group' => 'Finance and Banking',
-                'result' => 'N/A',
-                'institute' => 'National University, Bangladesh',
-                'passing_year' => '2018-Present'
-            ],
-            [
-                'exam' => 'HSC',
-                'board' => 'Dhaka',
-                'group' => 'Science',
-                'result' => '4.58/5.00',
-                'institute' => 'Dhaka College',
-                'passing_year' => '2017'
-            ],
-            [
-                'exam' => 'SSC',
-                'board' => 'Dhaka',
-                'group' => 'Science',
-                'result' => '5.00/5.00',
-                'institute' => 'Motijheel Govt. Boys High School',
-                'passing_year' => '2015'
-            ]
+            'exam' => 'Exam',
+            'board' => 'Board/University',
+            'group' => 'Group',
+            'result' => 'Result',
+            'institute' => 'Institute',
+            'passing_year' => 'Passing Year',
         ]
+    ],
+    'educational_info' =>
+    [
+        [
+            'exam' => 'BBA',
+            'board' => 'National University, Bangladesh',
+            'group' => 'Finance and Banking',
+            'result' => 'N/A',
+            'institute' => 'National University, Bangladesh',
+            'passing_year' => '2018-Present'
+        ],
+        [
+            'exam' => 'HSC',
+            'board' => 'Dhaka',
+            'group' => 'Science',
+            'result' => '4.58/5.00',
+            'institute' => 'Dhaka College',
+            'passing_year' => '2017'
+        ],
+        [
+            'exam' => 'SSC',
+            'board' => 'Dhaka',
+            'group' => 'Science',
+            'result' => '5.00/5.00',
+            'institute' => 'Motijheel Govt. Boys High School',
+            'passing_year' => '2015'
+        ]
+    ],
+    'languages' => [
+        'english' => 'English',
+        'bangla' => 'Bangla'
+    ],
+    'hobbies' => [
+        'books' => 'Reading Books',
+        'coding' => 'Coding',
+        'travel' => 'Traveling',
+        'music' => 'Listening to Music',
+        'movies' => 'Watching Movies',
+        'sports' => 'Playing Sports',
+    ],
+    'games' => [
+        'cricket' => 'Cricket',
+        'football' => 'Football',
+        'video_games' => 'Video Games',
     ]
 ];
 
@@ -64,32 +76,30 @@ $person = [
     <link
         href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
         rel="stylesheet" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css?v=<?php echo time(); ?>">
     <title>Resume</title>
 </head>
-
-
 
 <body>
     <header>
         <div>
             <h1>
-                <?php echo $person[0]['basic_info']['name']; ?>
+                <?php echo $person['basic_info']['name']; ?>
             </h1>
             <p>
-                <?php echo $person[0]['basic_info']['address']; ?>
+                <?php echo $person['basic_info']['address']; ?>
             </p>
             <p>
                 Email:
                 <a href="mailto:mdmahmudhasanrabbi@gmail.com">
-                    <?php echo $person[0]['basic_info']['email'] ?>
+                    <?php echo $person['basic_info']['email'] ?>
                 </a>
             </p>
             <p>Mobile:
-                <?php echo $person[0]['basic_info']['mobile'] ?>
+                <?php echo $person['basic_info']['mobile'] ?>
             </p>
         </div>
-        <!-- <img class="cv__img" src="image.JPG" alt="Md Mahmud Hasan Rabbi" /> -->
+        <?php echo '<img src="' . $person['basic_info']['img'] . '" alt="profile" height="130" width="150" />'; ?>
     </header>
     <main>
         <!-- Career Objective -->
@@ -128,41 +138,50 @@ $person = [
                     <th>GPA</th>
                     <th>Year</th> -->
                     <?php
-                    foreach ($person as $p) {
-                        foreach ($p as $key => $value) {
-                            if (is_array($value) && $key == 'label') {
-                                foreach ($value as $key => $value) {
-                                    // var_dump($value);
-                                    echo "<th>" . $value['exam'] . "</th>";
-                                    echo "<th>" . $value['board'] . "</th>";
-                                    echo "<th>" . $value['group'] . "</th>";
-                                    echo "<th>" . $value['result'] . "</th>";
-                                    echo "<th>" . $value['institute'] . "</th>";
-                                    echo "<th>" . $value['passing_year'] . "</th>";
-                                }
-                            }
+                    if (isset($person['th_label'])) {
+                        foreach ($person['th_label'] as $label) {
+                            echo '<th>' . $label['exam'] . '</th>';
+                            echo '<th>' . $label['board'] . '</th>';
+                            echo '<th>' . $label['group'] . '</th>';
+                            echo '<th>' . $label['result'] . '</th>';
+                            echo '<th>' . $label['institute'] . '</th>';
+                            echo '<th>' . $label['passing_year'] . '</th>';
                         }
                     }
+                    // foreach ($person['th_label'] as $key => $value) {
+                    //     foreach ($value as $key => $value) {
+                    //         echo "<th>$value</th>";
+                    //     }
+                    // }
                     ?>
                 </tr>
                 <?php
-                foreach ($person as $p) {
-                    foreach ($p as $key => $value) {
-                        if (is_array($value) && $key == 'educational_info') {
-                            foreach ($value as $key => $value) {
-                                // var_dump($valye);
-                                echo '<tr align="center">';
-                                echo '<td>' . $value['exam'] . '</td>';
-                                echo '<td>' . $value['board'] . '</td>';
-                                echo '<td>' . $value['group'] . '</td>';
-                                echo '<td>' . $value['result'] . '</td>';
-                                echo '<td>' . $value['institute'] . '</td>';
-                                echo '<td>' . $value['passing_year'] . '</td>';
-                                echo '</tr>';
-                            }
+                if (isset($person['educational_info'])) {
+                    foreach ($person['educational_info'] as $edu) {
+                        echo '<tr align="center">';
+                        foreach ($edu as $key => $value) {
+                            echo '<td>' . $value . '</td>';
                         }
+                        echo '</tr>';
                     }
                 }
+                // foreach ($person as $p) {
+                //     foreach ($p as $key => $value) {
+                //         if (is_array($value) && $key == 'educational_info') {
+                //             foreach ($value as $key => $value) {
+                //                 // var_dump($valye);
+                //                 echo '<tr align="center">';
+                //                 echo '<td>' . $value['exam'] . '</td>';
+                //                 echo '<td>' . $value['board'] . '</td>';
+                //                 echo '<td>' . $value['group'] . '</td>';
+                //                 echo '<td>' . $value['result'] . '</td>';
+                //                 echo '<td>' . $value['institute'] . '</td>';
+                //                 echo '<td>' . $value['passing_year'] . '</td>';
+                //                 echo '</tr>';
+                //             }
+                //         }
+                //     }
+                // }
                 ?>
                 <!-- <tr align="center">
                     <td>BBA</td>
@@ -225,26 +244,32 @@ $person = [
             </dl>
         </section>
         <!-- Languages -->
-
         <section class="languages">
             <h3>Languages</h3>
             <hr />
             <ul>
-                <li>English</li>
-                <li>Bangla</li>
+                <?php
+                if (isset($person['languages'])) {
+                    foreach ($person['languages'] as $lang) {
+                        echo '<li>' . $lang . '</li>';
+                    }
+                }
+                ?>
             </ul>
         </section>
-
         <!-- Personal Information -->
-
         <!-- Hobbies -->
         <section class="hobby">
             <h3>Hobbies</h3>
             <hr />
             <ul>
-                <li>Reading Books</li>
-                <li>Watch Movies</li>
-                <li>Playing sports</li>
+                <?php
+                if (isset($person['hobbies'])) {
+                    foreach ($person['hobbies'] as $hobby) {
+                        echo '<li>' . $hobby . '</li>';
+                    }
+                }
+                ?>
             </ul>
         </section>
         <!-- Games -->
@@ -252,9 +277,14 @@ $person = [
             <h3>Games</h3>
             <hr />
             <ul>
-                <li>Cricket</li>
-                <li>Football</li>
-                <li>Video Games</li>
+                <?php
+                if (isset($person['games'])) {
+                    foreach ($person['games'] as $game) {
+                        // var_dump($game);
+                        echo '<li>' . $game . '</li>';
+                    }
+                }
+                ?>
             </ul>
         </section>
     </main>
