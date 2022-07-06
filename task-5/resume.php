@@ -85,22 +85,22 @@ $person = [
     <header>
         <div>
             <h1>
-                <?php echo $person['basic_info']['name']; ?>
+                <?php echo $person['basic_info']['name'] ?? ''; ?>
             </h1>
             <p>
-                <?php echo $person['basic_info']['address']; ?>
+                <?php echo $person['basic_info']['address'] ?? ''; ?>
             </p>
             <p>
                 Email:
                 <a href="mailto:mdmahmudhasanrabbi@gmail.com">
-                    <?php echo $person['basic_info']['email'] ?>
+                    <?php echo $person['basic_info']['email'] ?? '' ?>
                 </a>
             </p>
             <p>Mobile:
-                <?php echo $person['basic_info']['mobile'] ?>
+                <?php echo $person['basic_info']['mobile'] ?? '' ?>
             </p>
         </div>
-        <?php echo '<img src="' . $person['basic_info']['img'] . '" alt="profile" height="130" width="150" />'; ?>
+        <?php echo '<img src="' . $person['basic_info']['img'] . '" alt="profile" height="130" width="150" />' ?? ''; ?>
     </header>
     <main>
         <!-- Career Objective -->
@@ -127,6 +127,9 @@ $person = [
         <!-- Present Status -->
         <br />
         <!-- Education -->
+        <?php
+        if (isset($person['educational_info'])) :
+        ?>
         <section class="education">
             <h3>Education</h3>
             <hr />
@@ -139,60 +142,52 @@ $person = [
                     <th>GPA</th>
                     <th>Year</th> -->
                     <?php
-                    if (isset($person['th_label'])) {
-                        foreach ($person['th_label'] as $label) {
-                            echo '<th>' . $label['exam'] . '</th>';
-                            echo '<th>' . $label['board'] . '</th>';
-                            echo '<th>' . $label['group'] . '</th>';
-                            echo '<th>' . $label['result'] . '</th>';
-                            echo '<th>' . $label['institute'] . '</th>';
-                            echo '<th>' . $label['passing_year'] . '</th>';
+                        if (isset($person['th_label'])) {
+                            foreach ($person['th_label'] as $label) {
+                                echo '<th>' . $label['exam'] . '</th>';
+                                echo '<th>' . $label['board'] . '</th>';
+                                echo '<th>' . $label['group'] . '</th>';
+                                echo '<th>' . $label['result'] . '</th>';
+                                echo '<th>' . $label['institute'] . '</th>';
+                                echo '<th>' . $label['passing_year'] . '</th>';
+                            }
+                        }
+                        // foreach ($person['th_label'] as $key => $value) {
+                        //     foreach ($value as $key => $value) {
+                        //         echo "<th>$value</th>";
+                        //     }
+                        // }
+                        ?>
+                </tr>
+                <?php if (count($person['educational_info']) > 0) {
+                        foreach ($person['educational_info'] as $edu) {
+                            echo '<tr align="center">';
+                            foreach ($edu as $key => $value) {
+                                echo '<td>' . $value . '</td>';
+                            }
+                            echo '</tr>';
                         }
                     } else {
-                        echo '<th>Exam</th>';
-                        echo '<th>Board/University</th>';
-                        echo '<th>Group</th>';
-                        echo '<th>Result</th>';
-                        echo '<th>Institute</th>';
-                        echo '<th>Passing Year</th>';
+                        echo '<tr align="center"><td colspan="6">No Data Found</td></tr>';
                     }
-                    // foreach ($person['th_label'] as $key => $value) {
-                    //     foreach ($value as $key => $value) {
-                    //         echo "<th>$value</th>";
+                    // foreach ($person as $p) {
+                    //     foreach ($p as $key => $value) {
+                    //         if (is_array($value) && $key == 'educational_info') {
+                    //             foreach ($value as $key => $value) {
+                    //                 // var_dump($valye);
+                    //                 echo '<tr align="center">';
+                    //                 echo '<td>' . $value['exam'] . '</td>';
+                    //                 echo '<td>' . $value['board'] . '</td>';
+                    //                 echo '<td>' . $value['group'] . '</td>';
+                    //                 echo '<td>' . $value['result'] . '</td>';
+                    //                 echo '<td>' . $value['institute'] . '</td>';
+                    //                 echo '<td>' . $value['passing_year'] . '</td>';
+                    //                 echo '</tr>';
+                    //             }
+                    //         }
                     //     }
                     // }
                     ?>
-                </tr>
-                <?php
-                if (isset($person['educational_info'])) {
-                    foreach ($person['educational_info'] as $edu) {
-                        echo '<tr align="center">';
-                        foreach ($edu as $key => $value) {
-                            echo '<td>' . $value . '</td>';
-                        }
-                        echo '</tr>';
-                    }
-                } else {
-                    echo '<tr align="center"><td colspan="6">No Data Found</td></tr>';
-                }
-                // foreach ($person as $p) {
-                //     foreach ($p as $key => $value) {
-                //         if (is_array($value) && $key == 'educational_info') {
-                //             foreach ($value as $key => $value) {
-                //                 // var_dump($valye);
-                //                 echo '<tr align="center">';
-                //                 echo '<td>' . $value['exam'] . '</td>';
-                //                 echo '<td>' . $value['board'] . '</td>';
-                //                 echo '<td>' . $value['group'] . '</td>';
-                //                 echo '<td>' . $value['result'] . '</td>';
-                //                 echo '<td>' . $value['institute'] . '</td>';
-                //                 echo '<td>' . $value['passing_year'] . '</td>';
-                //                 echo '</tr>';
-                //             }
-                //         }
-                //     }
-                // }
-                ?>
                 <!-- <tr align="center">
                     <td>BBA</td>
                     <td>National University, Bangladesh</td>
@@ -216,6 +211,7 @@ $person = [
                 </tr> -->
             </table>
         </section>
+        <?php endif; ?>
         <!-- Education -->
         <br />
         <!--Computer Skills  -->
@@ -271,49 +267,51 @@ $person = [
         </section>
         <!-- Personal Information -->
         <!-- Hobbies -->
+        <?php
+        if (isset($person['hobbies'])) :
+        ?>
         <section class="hobby">
             <h3>Hobbies</h3>
             <hr />
             <ul>
                 <?php
-                if (isset($person['hobbies'])) {
-                    foreach ($person['hobbies'] as $hobby) {
-                        echo '<li>' . $hobby . '</li>';
+                    if (count($person['hobbies']) > 0) {
+                        foreach ($person['hobbies'] as $hobby) {
+                            echo '<li>' . $hobby . '</li>';
+                        }
+                    } else {
+                        echo '<li>No Hobbies</li>';
                     }
-                } else {
-                    echo '<li>No Hobbies</li>';
-                }
-                ?>
+                    ?>
             </ul>
         </section>
+        <?php endif; ?>
         <!-- Games -->
+        <?php
+        if (isset($person['games'])) :
+        ?>
         <section class="games">
             <h3>Games</h3>
             <hr />
             <ul>
                 <?php
-                if (isset($person['games'])) {
-                    foreach ($person['games'] as $game) {
-                        // var_dump($game);
-                        echo '<li>' . $game . '</li>';
+                    if (count($person['games']) > 0) {
+                        foreach ($person['games'] as $game) {
+                            // var_dump($game);
+                            echo '<li>' . $game . '</li>';
+                        }
+                    } else {
+                        echo '<li>No Games</li>';
                     }
-                } else {
-                    echo '<li>No Games</li>';
-                }
-                ?>
+                    ?>
             </ul>
         </section>
+        <?php endif; ?>
     </main>
     <br />
     <footer>
         <p>
-            Copyright &copy; Md Mahmud Hasan Rabbi,<span id="year">
-                <script>
-                document
-                    .getElementById('year')
-                    .appendChild(document.createTextNode(new Date().getFullYear()));
-                </script>
-            </span>
+            Copyright &copy; Md Mahmud Hasan Rabbi,<span><?php echo date('Y') ?></span>
         </p>
     </footer>
 </body>
