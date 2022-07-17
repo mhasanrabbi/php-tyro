@@ -1,72 +1,3 @@
-<?php
-
-$person = [
-    'basic_info' => [
-        'name' => 'Md Mahmud Hasan Rabbi',
-        'address' => 'North Mugda, Sabujbagh, Basabo, Dhaka-1214',
-        'email' => 'mdmahmudhasanrabbi@gmail.com',
-        'mobile' => '+8801323570067',
-        'img' => 'img/profile.JPG',
-    ],
-    'th_label' => [
-        [
-            'exam' => 'Exam',
-            'board' => 'Board/University',
-            'group' => 'Group',
-            'result' => 'Result',
-            'institute' => 'Institute',
-            'passing_year' => 'Passing Year',
-        ]
-    ],
-    'educational_info' =>
-    [
-        [
-            'exam' => 'BBA',
-            'board' => 'National University, Bangladesh',
-            'group' => 'Finance and Banking',
-            'result' => 'N/A',
-            'institute' => 'National University, Bangladesh',
-            'passing_year' => '2018-Present'
-        ],
-        [
-            'exam' => 'HSC',
-            'board' => 'Dhaka',
-            'group' => 'Science',
-            'result' => '4.58/5.00',
-            'institute' => 'Dhaka College',
-            'passing_year' => '2017'
-        ],
-        [
-            'exam' => 'SSC',
-            'board' => 'Dhaka',
-            'group' => 'Science',
-            'result' => '5.00/5.00',
-            'institute' => 'Motijheel Govt. Boys High School',
-            'passing_year' => '2015'
-        ]
-    ],
-    'languages' => [
-        'english' => 'English',
-        'bangla' => 'Bangla'
-    ],
-    'hobbies' => [
-        'books' => 'Reading Books',
-        'coding' => 'Coding',
-        'travel' => 'Traveling',
-        'music' => 'Listening to Music',
-        'movies' => 'Watching Movies',
-        'series' => 'Watching TV Series',
-        'sports' => 'Playing Sports',
-    ],
-    'games' => [
-        'cricket' => 'Cricket',
-        'football' => 'Football',
-        'video_games' => 'Video Games',
-    ]
-];
-
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -82,6 +13,9 @@ $person = [
 </head>
 
 <body>
+    <?php
+    require_once "data.php";
+    ?>
     <header>
         <div>
             <h1>
@@ -135,12 +69,7 @@ $person = [
             <hr />
             <table style="width: 100%">
                 <tr align="center">
-                    <!-- <th style="width: 15%">Exam</th>
-                    <th style="width: 25%">Board/University</th>
-                    <th>group</th>
-                    <th>Name of Institution</th>
-                    <th>GPA</th>
-                    <th>Year</th> -->
+
                     <?php
                         if (isset($person['th_label'])) {
                             foreach ($person['th_label'] as $label) {
@@ -152,63 +81,23 @@ $person = [
                                 echo '<th>' . $label['passing_year'] . '</th>';
                             }
                         }
-                        // foreach ($person['th_label'] as $key => $value) {
-                        //     foreach ($value as $key => $value) {
-                        //         echo "<th>$value</th>";
-                        //     }
-                        // }
+
                         ?>
                 </tr>
                 <?php if (count($person['educational_info']) > 0) {
-                        foreach ($person['educational_info'] as $edu) {
-                            echo '<tr align="center">';
-                            foreach ($edu as $key => $value) {
-                                echo '<td>' . $value . '</td>';
+                            foreach ($person['educational_info'] as $edu) {
+                                echo '<tr align="center">';
+                                foreach ($edu as $key => $value) {
+                                    echo '<td>' . $value . '</td>';
+                                }
+                                echo '</tr>';
                             }
-                            echo '</tr>';
+                        } else {
+                            echo '<tr align="center"><td colspan="6">No Data Found</td></tr>';
                         }
-                    } else {
-                        echo '<tr align="center"><td colspan="6">No Data Found</td></tr>';
-                    }
-                    // foreach ($person as $p) {
-                    //     foreach ($p as $key => $value) {
-                    //         if (is_array($value) && $key == 'educational_info') {
-                    //             foreach ($value as $key => $value) {
-                    //                 // var_dump($valye);
-                    //                 echo '<tr align="center">';
-                    //                 echo '<td>' . $value['exam'] . '</td>';
-                    //                 echo '<td>' . $value['board'] . '</td>';
-                    //                 echo '<td>' . $value['group'] . '</td>';
-                    //                 echo '<td>' . $value['result'] . '</td>';
-                    //                 echo '<td>' . $value['institute'] . '</td>';
-                    //                 echo '<td>' . $value['passing_year'] . '</td>';
-                    //                 echo '</tr>';
-                    //             }
-                    //         }
-                    //     }
-                    // }
+
                     ?>
-                <!-- <tr align="center">
-                    <td>BBA</td>
-                    <td>National University, Bangladesh</td>
-                    <td>2018 - Present</td>
-                    <td>Habibullah Bahar College</td>
-                    <td>N/A</td>
-                </tr>
-                <tr align="center">
-                    <td>HSC</td>
-                    <td>Dhaka</td>
-                    <td>2017</td>
-                    <td>Dhaka College</td>
-                    <td>4.58/5.00</td>
-                </tr>
-                <tr align="center">
-                    <td>SSC</td>
-                    <td>Dhaka</td>
-                    <td>2015</td>
-                    <td>Motijheel Govt Boy's High School</td>
-                    <td>5.00/5.00</td>
-                </tr> -->
+
             </table>
         </section>
         <?php endif; ?>
