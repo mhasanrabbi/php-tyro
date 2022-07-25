@@ -37,7 +37,7 @@
     if (isset($_GET['submit'])) {
         $gpa = $_GET['gpa'];
         $educationLevel = $_GET['educationLevel'];
-        if (!empty($gpa) && !empty($educationLevel)) {
+        if ((!empty($gpa) || isset($gpa)) && !empty($educationLevel)) {
             if (($educationLevel == 'jsc' || $educationLevel == 'ssc' || $educationLevel == 'hsc') && ($gpa >= 0.0 && $gpa <= 5.0)) {
                 if ($gpa == 5.0) {
                     echo '<p><strong>Congratulations!</strong> You have got <b>A+</b>. Remember, success is a consequences, must not be a goal.</p>';
@@ -51,10 +51,10 @@
                     echo '<p>You have been passed with grade \'<b>C</b>\'. Forget the mistakes, Remember the lessons.</p>';
                 } elseif ($gpa < 2.0 && $gpa >= 1.0) {
                     echo '<p>You have been passed with grade \'<b>D</b>\'. Forget the mistakes, Remember the lessons.</p>';
-                } elseif ($gpa < 1.0) {
+                } elseif ($gpa >= 0.00 && $gpa < 1.0) {
                     echo '<p>Sorry, you have to try again. Better luck next time. Remember, Failure is the pillar of success.</p>';
                 }
-            } elseif (($educationLevel == 'graduation' || $educationLevel == 'masters') && ($gpa >= 0.0 && $gpa <= 4.0)) {
+            } elseif ((!empty($gpa) || isset($gpa)) && ($educationLevel == 'graduation' || $educationLevel == 'masters') && ($gpa >= 0 && $gpa <= 4.0)) {
                 if ($gpa == 4.0) {
                     echo '<p><strong>Congratulations!</strong> You have got <b>A+</b>. Remember, success is a consequences, must not be a goal.</p>';
                 } elseif ($gpa < 4.0 && $gpa >= 3.75) {
@@ -73,7 +73,7 @@
                     echo '<p>You have been passed with grade \'<b>C</b>\'. Forget the mistakes, Remember the lessons.</p>';
                 } elseif ($gpa < 2.25 && $gpa >= 2.0) {
                     echo '<p>You have been passed with grade \'<b>D</b>\'. Forget the mistakes, Remember the lessons.</p>';
-                } elseif ($gpa < 2.0) {
+                } elseif ($gpa >= 0.0 && $gpa < 2.25) {
                     echo '<p>Sorry, you have to try again. Better luck next time. Remember, Failure is the pillar of success.</p>';
                 }
             } else {
