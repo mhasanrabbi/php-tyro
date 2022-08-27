@@ -47,7 +47,6 @@ include 'db_connection.php';
                             <label class="form-label">Title</label>
                             <input type="text" class="form-control" name="title" placeholder="Enter Title"
                                 value="<?php echo $post->title; ?>">
-
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Category</label>
@@ -64,8 +63,9 @@ include 'db_connection.php';
                         <div class="mb-3">
                             <label class="form-label">Date</label>
                             <input type="date" name="published_at" class="form-control"
-                                value="<?php echo $post->published_at; ?>">
-
+                                value="<?php
+                                                                                                $date = date_create($post->published_at);
+                                                                                                echo date_format($date, 'Y-m-d'); ?>">
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Image</label>

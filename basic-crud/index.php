@@ -86,6 +86,7 @@ include_once 'db_connection.php';
                                 <td class="align-middle">
                                     <form action="functions.php" method="POST">
                                         <button class="btn text-danger" type="submit" name="deletePost"
+                                            onclick="return confirm('Are you sure yopu want to delete this post?')"
                                             value="<?php echo $data->id ?>">
                                             <i class="fa-solid fa-trash"></i>
                                         </button>
