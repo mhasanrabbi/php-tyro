@@ -41,7 +41,7 @@ include 'db_connection.php';
                         $post = $statement->fetch(PDO::FETCH_OBJ);
                     }
                     ?>
-                    <form action="functions.php" method="POST">
+                    <form action="functions.php" method="POST" enctype="multipart/form-data">
                         <input type="hidden" name="post_id" value="<?php echo $post->id ?>">
                         <div class="mb-3">
                             <label class="form-label">Title</label>
@@ -69,7 +69,7 @@ include 'db_connection.php';
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Image</label>
-                            <input type="text" name="image_path" class="form-control" placeholder="Image"
+                            <input type="file" name="image_path" class="form-control" placeholder="Image"
                                 value="<?php echo $post->image_path; ?>">
                         </div>
                         <div class="mb-3">

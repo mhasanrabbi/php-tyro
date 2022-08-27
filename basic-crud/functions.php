@@ -18,7 +18,7 @@ if (isset($_POST['updatePost'])) {
     $category = sanitize($_POST['category']);
     $author = sanitize($_POST['author']);
     $published_at = sanitize($_POST['published_at']);
-    $image_url = sanitize($_POST['image_path']);
+    $image_url = sanitize($_FILES['image_path']);
 
     try {
         $query = "UPDATE posts SET title = :title, category = :category, author_name = :author, published_at = :published_at, image_path = :image_url WHERE id = :post_id";
@@ -55,7 +55,7 @@ if (isset($_POST['addPost'])) {
     $category = sanitize($_POST['category']);
     $author = sanitize($_POST['author']);
     $published_at = sanitize($_POST['published_at']);
-    $image_url = sanitize($_POST['image_path']);
+    $image_url = sanitize($_FILES['image_path']);
 
     try {
         $query = "INSERT INTO posts (title, category, author_name, published_at, image_path) VALUES (:title, :category, :author, :published_at, :image_url)";

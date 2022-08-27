@@ -25,7 +25,7 @@
             </div>
             <div class="row mt-2 w-75 bg-light mx-auto">
                 <div class="col">
-                    <form action="functions.php" method="POST">
+                    <form action="functions.php" method="POST" enctype="multipart/form-data">
 
                         <div class="mb-3">
                             <label class="form-label">Title</label>
@@ -49,7 +49,7 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Image</label>
-                            <input type="text" name="image_path" class="form-control" placeholder="Image">
+                            <input type="file" name="image_path" class="form-control" placeholder="Image">
                         </div>
                         <div class="mb-3">
                             <button class="btn btn-primary" type="submit" name="addPost">

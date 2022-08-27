@@ -56,17 +56,17 @@ include_once 'db_connection.php';
                         </thead>
                         <tbody class="text-center">
                             <?php
-                            $query = "SELECT DATE(published_at) as published_at, title, category, author_name, image_path, id FROM posts";
+                            $query = "SELECT * FROM posts";
                             $statement = $conn->prepare($query);
                             $statement->execute();
 
                             // $statement->setFetchMode(PDO::FETCH_ASSOC);
                             $result = $statement->fetchAll(PDO::FETCH_OBJ);
                             if ($result) {
-                                foreach ($result as $data) {
+                                foreach ($result as $key => $data) {
                             ?>
                             <tr>
-                                <th scope="row" class="align-middle"><?php echo $data->id; ?></th>
+                                <th scope="row" class="align-middle"><?php echo $key + 1; ?></th>
                                 <td class="w-25 align-middle"><img src="<?php echo $data->image_path; ?>" alt=""
                                         class="w-25">
                                 </td>
@@ -74,9 +74,10 @@ include_once 'db_connection.php';
                                 <td class="align-middle"><?php echo $data->title; ?></td>
                                 <td class="align-middle"><?php echo $data->category; ?></td>
                                 <td class="align-middle">
-                                    <?php echo
-                                            $data->published_at;
-                                            ?>
+                                    <?php
+                                            $date = date_create($data->published_at);
+                                            echo date_format($date, 'Y-m-d'); ?>
+
                                 </td>
                                 <td class="align-middle"><?php echo $data->author_name; ?></td>
                                 <td class="align-middle">
