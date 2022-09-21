@@ -1,6 +1,10 @@
 <?php
 $user = $_SESSION['logged_in_user_name'] ?? 'dummy';
 include_once  __DIR__ . './partials/header.view.php';
+
+use App\Controllers\PostController;
+use App\Models\Post;
+
 ?>
 
 <body>
@@ -25,6 +29,10 @@ include_once  __DIR__ . './partials/header.view.php';
                         </tr>
                     </thead>
                     <tbody class="text-center">
+                        <?php
+
+                        var_dump($data);
+                        ?>
                         <tr>
                             <th scope="row" class="align-middle">1</th>
                             <td class="w-25 align-middle"><img

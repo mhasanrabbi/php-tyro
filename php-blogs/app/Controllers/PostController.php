@@ -22,4 +22,15 @@ class PostController
         // var_dump($_POST);
         // var_dump($_FILES);
     }
+
+
+    public function allPosts()
+    {
+        $data = new Post();
+        $data->getAllPosts();
+
+
+        return $data;
+        var_dump($data);
+    }
 }

@@ -33,4 +33,14 @@ class Post
         // var_dump($title, $author, $image);
         // exit;
     }
-}
+
+    public function getAllPosts()
+    {
+        $queryURI = "SELECT * FROM posts";
+        $query = $this->connection->prepare($queryURI);
+        $query->execute();
+        // return $query->fetch($this->connection::FETCH_ASSOC);
+        $res = [];
+        $res[] = $query->fetch($this->connection::FETCH_ASSOC);
+    }
+};
