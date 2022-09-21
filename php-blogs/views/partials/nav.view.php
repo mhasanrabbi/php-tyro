@@ -10,7 +10,7 @@
             <li class="nav-item mr-2">
                 <?php if ($_SERVER["PATH_INFO"] == ("/dashboard")) { ?>
                 <div>
-                    <a class="nav-link btn btn-primary text-white" href="/">Add Post</a>
+                    <a class="nav-link btn btn-primary text-white" href="/create">Add Post</a>
                 </div>
                 <?php } ?>
             </li>

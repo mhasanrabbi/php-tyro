@@ -22,6 +22,7 @@ Database::loadConfig($dbConfig);
 use App\Controllers\HomeController;
 use App\Controllers\AuthController;
 use App\Controllers\RegisterController;
+use App\Controllers\PostController;
 
 // var_dump($_SERVER);exit;
 
@@ -39,6 +40,12 @@ if ($path == '/login') {
         echo (new RegisterController())->registerView();
     } else {
         echo (new RegisterController())->register();
+    }
+} elseif ($path == '/create') {
+    if (strtoupper($_SERVER['REQUEST_METHOD']) == 'GET') {
+        echo (new PostController())->createView();
+    } else {
+        echo (new PostController())->save();
     }
 } elseif ($path == '/dashboard') {
     echo (new DashboardController())->index();

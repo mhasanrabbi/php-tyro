@@ -21,12 +21,11 @@ include_once  __DIR__ . './partials/header.view.php';
                                 <label for="author">Author</label>
                                 <input type="text" class="form-input" name="author" placeholder="Enter Author Name" />
                             </p>
-
                             <p>
                                 <label for="image">Image</label>
-                                <input type="file" class="form-control-file" name="image" placeholder="Image" />
+                                <input type="text" class="form-input" name="image" placeholder="Enter Image Url" />
                             </p>
-                            <input type="submit" class="btn btn-primary" value="Create" />
+                            <input type="submit" class="btn btn-primary" value="create" />
                         </form>
                     </div>
                 </div>
