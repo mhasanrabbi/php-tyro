@@ -26,6 +26,7 @@ use App\Controllers\PostController;
 
 // var_dump($_SERVER);exit;
 
+// var_dump($_SERVER);exit;
 
 $path = $_SERVER['PATH_INFO'] ?? '/';
 

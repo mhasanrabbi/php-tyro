@@ -28,8 +28,6 @@ class PostController
     {
         $data = new Post();
         $result = $data->getAllPosts();
-
-
         return $result;
     }
 }
