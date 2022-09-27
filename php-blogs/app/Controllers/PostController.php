@@ -30,4 +30,17 @@ class PostController
         $result = $data->getAllPosts();
         return $result;
     }
+
+    public function edit()
+    {
+        return ResponseHelper::renderView('edit');
+    }
+
+    public function getPost()
+    {
+        $id = $_REQUEST['id'];
+        $data = new Post();
+        $result = $data->getPost($id);
+        return $result;
+    }
 }

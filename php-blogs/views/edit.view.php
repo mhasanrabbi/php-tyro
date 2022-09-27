@@ -1,38 +1,47 @@
 <?php
+
+use App\Controllers\PostController;
+
 $user = $_SESSION['logged_in_user_name'] ?? 'dummy';
+include_once  __DIR__ . './partials/header.view.php';
+
+$posts = new PostController();
+$result = $posts->getPost();
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous" />
-    <link rel="stylesheet" href="style.css" />
-    <title>Todo's</title>
-</head>
-
 <body>
+    <?php include_once  __DIR__ . './partials/nav.view.php';
+    var_dump($result);
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Hello <?php echo $user ?></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+    ?>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <?php if ($user != 'dummy') : ?>
-                    <div>
-                        <a class="nav-link btn btn-primary text-white" href="/logout">Logout</a>
+
+    <div class="main">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="login-card">
+                        <h2 class="text-center mb-4">Update Post</h2>
+                        <form action="/update" method="post" enctype="multipart/form-data">
+                            <p>
+                                <label for="title">Title</label>
+                                <input type="text" class="form-input" name="title" value="<?= $result[0]['title'] ?>" />
+                            </p>
+                            <p>
+                                <label for="author">Author</label>
+                                <input type="text" class="form-input" name="author"
+                                    value="<?= $result[0]['author'] ?>" />
+                            </p>
+                            <p>
+                                <label for="image">Image</label>
+                                <input type="text" class="form-input" name="image" value="<?= $result[0]['image'] ?>" />
+                            </p>
+                            <input type="submit" class="btn btn-primary" value="update" />
+                        </form>
                     </div>
-                    <?php endif; ?>
-                </li>
-            </ul>
+                </div>
+            </div>
         </div>
+    </div>
+
+    <?php include_once  __DIR__ . './partials/footer.view.php'; ?>

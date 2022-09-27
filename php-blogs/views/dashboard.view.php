@@ -3,7 +3,9 @@ $user = $_SESSION['logged_in_user_name'] ?? 'dummy';
 include_once  __DIR__ . './partials/header.view.php';
 
 use App\Controllers\PostController;
-use App\Models\Post;
+
+$posts = new PostController();
+$results = $posts->allPosts();
 
 ?>
 
@@ -30,21 +32,17 @@ use App\Models\Post;
                     </thead>
                     <tbody class="text-center">
                         <?php
-                        $posts = new PostController();
-                        $result = $posts->allPosts();
-                        var_dump($result);
+                        foreach ($results as $key => $result) {
                         ?>
                         <tr>
-                            <th scope="row" class="align-middle">1</th>
-                            <td class="w-25 align-middle"><img
-                                    src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1474154022i/3.jpg"
-                                    alt="" class="w-25">
+                            <th scope="row" class="align-middle"><?= $key + 1 ?></th>
+                            <td class="w-25 align-middle"><img src=<?= $result['image'] ?> alt="" class="w-25">
                             </td>
 
-                            <td class="align-middle">Harry Potter and the Sorcerer&#039;s Stone</td>
-                            <td class="align-middle">J.K Rowling</td>
+                            <td class="align-middle"><?= $result['title'] ?></td>
+                            <td class="align-middle"><?= $result['author'] ?></td>
                             <td class="align-middle ">
-                                <a class="text-white btn btn-success" href="editpost.php?id=14">Edit</a>
+                                <a class="text-white btn btn-success" href="<?= 'edit?id=' . $result['id'] ?>">Edit</a>
                             </td>
                             <td class="align-middle">
                                 <form action="functions.php" method="POST">
@@ -56,6 +54,9 @@ use App\Models\Post;
                                 </form>
                             </td>
                         </tr>
+                        <?php
+                        }
+                        ?>
                     </tbody>
                 </table>
             </div>

@@ -41,4 +41,12 @@ class Post
         $query->execute();
         return $query->fetchAll($this->connection::FETCH_ASSOC);
     }
+
+    public function getPost($id)
+    {
+        $queryURI = "SELECT * FROM posts WHERE id = $id";
+        $query = $this->connection->prepare($queryURI);
+        $query->execute();
+        return $query->fetchAll($this->connection::FETCH_ASSOC);
+    }
 };
