@@ -43,4 +43,11 @@ class PostController
         $result = $data->getPost($id);
         return $result;
     }
+
+    public function updatePost()
+    {
+        $post = new Post();
+        $post->updatePost($_POST);
+        header('Location: /dashboard');
+    }
 }

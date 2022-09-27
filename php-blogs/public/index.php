@@ -54,7 +54,7 @@ if ($path == '/login') {
         echo (new PostController())->edit();
         echo (new PostController())->getPost();
     } else {
-        echo (new PostController())->save();
+        echo (new PostController())->updatePost();
     }
 } elseif ($path == '/dashboard') {
     echo (new DashboardController())->index();

@@ -22,7 +22,7 @@ $result = $posts->getPost();
                 <div class="col">
                     <div class="login-card">
                         <h2 class="text-center mb-4">Update Post</h2>
-                        <form action="/update" method="post" enctype="multipart/form-data">
+                        <form action="/edit" method="post" enctype="multipart/form-data">
                             <p>
                                 <label for="title">Title</label>
                                 <input type="text" class="form-input" name="title" value="<?= $result[0]['title'] ?>" />
@@ -36,6 +36,7 @@ $result = $posts->getPost();
                                 <label for="image">Image</label>
                                 <input type="text" class="form-input" name="image" value="<?= $result[0]['image'] ?>" />
                             </p>
+                            <input type="hidden" name="id" value="<?= $result[0]['id'] ?>" />
                             <input type="submit" class="btn btn-primary" value="update" />
                         </form>
                     </div>

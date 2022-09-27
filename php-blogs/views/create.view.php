@@ -15,11 +15,12 @@ include_once  __DIR__ . './partials/header.view.php';
                         <form action="/create" method="post" enctype="multipart/form-data">
                             <p>
                                 <label for="title">Title</label>
-                                <input type="text" class="form-input" name="title" placeholder="Enter title" />
+                                <input type="text" class="form-input" name="title" placeholder="Enter title" required />
                             </p>
                             <p>
                                 <label for="author">Author</label>
-                                <input type="text" class="form-input" name="author" placeholder="Enter Author Name" />
+                                <input type="text" class="form-input" name="author" placeholder="Enter Author Name"
+                                    required />
                             </p>
                             <p>
                                 <label for="image">Image</label>
