@@ -10,8 +10,4 @@ class DashboardController
     {
         return ResponseHelper::renderView('dashboard', []);
     }
-    public function create()
-    {
-        return ResponseHelper::renderView('create', []);
-    }
 }

@@ -49,10 +49,14 @@ if ($path == '/login') {
     } else {
         echo (new PostController())->save();
     }
+} elseif ($path == '/edit') {
+    if (strtoupper($_SERVER['REQUEST_METHOD']) == 'GET') {
+        echo (new PostController())->updateView();
+    } else {
+        echo (new PostController())->update();
+    }
 } elseif ($path == '/dashboard') {
     echo (new DashboardController())->index();
-} elseif ($path == '/create') {
-    echo (new DashboardController())->create();
 } elseif ($path == '/logout') {
     echo (new AuthController())->logout();
 } else {

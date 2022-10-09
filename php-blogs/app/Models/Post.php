@@ -41,4 +41,14 @@ class Post
         $query->execute();
         return $query->fetchAll($this->connection::FETCH_ASSOC);
     }
+
+    public function getPostById($post)
+    {
+        $id = $post['id'];
+        $queryURI = "SELECT * FROM posts WHERE id = :id LIMIT 1";
+        $query = $this->connection->prepare($queryURI);
+        $query->bindValue(":id", $id);
+        $query->execute();
+        $query->fetchAll($this->connection::FETCH_ASSOC);
+    }
 };
