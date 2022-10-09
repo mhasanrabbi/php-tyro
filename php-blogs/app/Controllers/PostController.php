@@ -10,22 +10,8 @@ class PostController
 
     public function createView()
     {
+
         return ResponseHelper::renderView('/create', []);
-    }
-
-    public function updateView()
-    {
-        return ResponseHelper::renderView('/update', []);
-        // $postById = new Post();
-        // $postById->getPostById($_GET);
-        // return $postById;
-    }
-
-    public function index()
-    {
-        $data = new Post();
-        $result = $data->getAllPosts();
-        return $result;
     }
 
     public function save()
@@ -37,7 +23,11 @@ class PostController
         // var_dump($_FILES);
     }
 
-    public function update()
+
+    public function allPosts()
     {
+        $data = new Post();
+        $result = $data->getAllPosts();
+        return $result;
     }
 }

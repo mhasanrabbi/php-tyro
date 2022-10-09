@@ -4,9 +4,6 @@ include_once  __DIR__ . './partials/header.view.php';
 
 use App\Controllers\PostController;
 
-$posts = new PostController();
-$result = $posts->index();
-
 ?>
 
 <body>
@@ -32,42 +29,33 @@ $result = $posts->index();
                     </thead>
                     <tbody class="text-center">
                         <?php
-                        if ($result) {
-                            foreach ($result as $key => $data) {
-                        ?>
+                        $posts = new PostController();
+                        $results = $posts->allPosts();
+                        // var_dump($results);
+                        foreach ($results as $key => $result) { ?>
                         <tr>
-                            <th scope="row" class="align-middle"><?= $key + 1; ?></th>
-                            <td class="w-25 align-middle"><img src="<?= $data['image']; ?>" alt="" class="w-25">
+                            <th scope="row" class="align-middle"><?= $key + 1 ?></th>
+                            <td class="w-25 align-middle"><img
+                                    src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1474154022i/3.jpg"
+                                    alt="" class="w-25">
                             </td>
 
-                            <td class="align-middle"><?= $data['title']; ?></td>
-                            <td class="align-middle"><?= $data['author']; ?></td>
+                            <td class="align-middle"><?= $result['title'] ?></td>
+                            <td class="align-middle"><?= $result['author'] ?></td>
                             <td class="align-middle ">
-                                <a class="text-white btn btn-success"
-                                    href="/edit?id=<?php echo $data['id']; ?>">Edit</a>
+                                <a class="text-white btn btn-success" href="<?= 'edit?id=' . $result['id'] ?>">Edit</a>
                             </td>
                             <td class="align-middle">
-                                <form action="functions.php" method="POST">
-                                    <button class="text-white btn btn-danger" type="submit" name="deletePost"
-                                        onclick="return confirm('Are you sure yopu want to delete this post?')"
-                                        value="14">
-                                        Delete
-                                    </button>
+                                <form action="/dashboard" method="post">
+                                    <a class="text-white btn btn-danger" type="submit"
+                                        href="<?= 'dashboard?id=' . $result['id'] ?>">
+                                        Delete </a>
                                 </form>
                             </td>
-                            <?php
-                            }
-                                ?>
-                        </tr>
-                        <?php
-                        } else {
-                            ?>
-                        <tr>
-                            <td colspan="8">No Posts Found</td>
                         </tr>
                         <?php
                         }
-                            ?>
+                        ?>
                     </tbody>
                 </table>
             </div>

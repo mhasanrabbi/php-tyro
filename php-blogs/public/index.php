@@ -51,12 +51,28 @@ if ($path == '/login') {
     }
 } elseif ($path == '/edit') {
     if (strtoupper($_SERVER['REQUEST_METHOD']) == 'GET') {
-        echo (new PostController())->updateView();
+        echo (new HomeController())->edit();
+        echo (new HomeController())->editPost();
     } else {
-        echo (new PostController())->update();
+        echo (new HomeController())->updatePost();
+    }
+} elseif ($path == '/dashboard') {
+    if (strtoupper($_SERVER['REQUEST_METHOD']) == 'GET') {
+        echo (new DashboardController())->index();
+    } else {
+        echo (new HomeController())->deletePost();
+    }
+} elseif ($path == '/delete') {
+    if (strtoupper($_SERVER['REQUEST_METHOD']) == 'GET') {
+        echo (new HomeController())->delete();
+        // echo (new HomeController())->editPost();
+    } else {
+        echo (new HomeController())->deletePost();
     }
 } elseif ($path == '/dashboard') {
     echo (new DashboardController())->index();
+} elseif ($path == '/create') {
+    echo (new DashboardController())->create();
 } elseif ($path == '/logout') {
     echo (new AuthController())->logout();
 } else {
