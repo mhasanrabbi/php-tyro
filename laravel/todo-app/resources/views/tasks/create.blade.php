@@ -4,6 +4,7 @@
 <h1>New Task</h1>
 
 <form action="/tasks" method="post">
+    @csrf
     <div class="form-group">
         <label for="description">Task Description</label>
         <input class="form-control" name="description" type="text">
