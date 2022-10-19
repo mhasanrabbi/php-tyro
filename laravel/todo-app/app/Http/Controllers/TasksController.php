@@ -9,7 +9,14 @@ class TasksController extends Controller
 {
     public function index()
     {
-        return view('tasks.index');
+        // Get all of the tasks upon visiting homepage
+        $tasks = Task::latest()->get();
+        // Display / Render all of the tasks that we have
+
+        // Pass the data to our index view
+        return view('tasks.index', [
+            'tasks' => $tasks
+        ]);
     }
 
     public function create()
@@ -26,7 +33,11 @@ class TasksController extends Controller
 
         $task = Task::create($formRequest);
 
-        return dd($task);
+        // Return to the homepage when a task is created
+
+
+
+        return redirect('/');
     }
 
 
