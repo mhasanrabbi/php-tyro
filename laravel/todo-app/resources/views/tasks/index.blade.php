@@ -7,9 +7,9 @@
     <div class="card-body">
         <p>
             {{$task->description}}
-            {{-- @if($task->isCompleted())
+            @if($task->isCompleted())
             <span class="badge badge-success">Completed</span>
-            @endif --}}
+            @endif
         </p>
 
         @if(!$task->isCompleted())

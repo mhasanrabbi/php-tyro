@@ -23,13 +23,12 @@ class TasksController extends Controller
 
     public function store(Request $request)
     {
-        $formRequest = $request->only([
-            'description'
+        $formRequest = $request->validate([
+            'description' => 'required'
         ]);
 
         Task::create($formRequest);
 
-        // Return to the homepage when a task is created
         return redirect('/');
     }
 
@@ -44,7 +43,6 @@ class TasksController extends Controller
         return redirect('/');
     }
 
-    // Delete a task permanently
     public function delete($id)
     {
         $task = Task::where('id', $id)->first();
