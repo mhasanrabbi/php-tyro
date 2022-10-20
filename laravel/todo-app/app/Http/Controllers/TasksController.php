@@ -9,11 +9,8 @@ class TasksController extends Controller
 {
     public function index()
     {
-        // Get all of the tasks upon visiting homepage
-        $tasks = Task::orderBy('id', 'desc')->get();
-        // Display / Render all of the tasks that we have
+        $tasks = Task::orderBy('completed_at', 'ASC')->orderBy('id', 'desc')->get();
 
-        // Pass the data to our index view
         return view('tasks.index', [
             'tasks' => $tasks
         ]);
