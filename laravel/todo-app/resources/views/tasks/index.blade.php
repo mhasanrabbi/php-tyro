@@ -18,6 +18,12 @@
             @method('PATCH')
             <button type="submit" class="btn btn-secondary btn-block">Complete</button>
         </form>
+        @else
+        <form action="/tasks/{{ $task->id }}" method="POST">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger btn-block">Delete</button>
+        </form>
         @endif
     </div>
 </div>

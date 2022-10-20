@@ -23,7 +23,6 @@ class TasksController extends Controller
 
     public function store(Request $request)
     {
-
         $formRequest = $request->only([
             'description'
         ]);
@@ -44,6 +43,14 @@ class TasksController extends Controller
 
         return redirect('/');
     }
-    // Divivde the tasks into completed and uncompleted section
+
     // Delete a task permanently
+    public function delete($id)
+    {
+        $task = Task::where('id', $id)->first();
+
+        $task->delete();
+
+        return redirect('/');
+    }
 }
