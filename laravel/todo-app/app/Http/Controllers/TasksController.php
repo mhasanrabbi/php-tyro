@@ -31,20 +31,22 @@ class TasksController extends Controller
             'description'
         ]);
 
-        $task = Task::create($formRequest);
+        Task::create($formRequest);
 
         // Return to the homepage when a task is created
-
-
-
         return redirect('/');
     }
 
-
-    // Handle the task submission data
-    // Create a task
-    // Display a list of tasks
     // Mark a task as completed
+    public function update($id)
+    {
+        $task = Task::where('id', $id)->first();
+
+        $task->completed_at = now();
+        $task->save();
+
+        return redirect('/');
+    }
     // Divivde the tasks into completed and uncompleted section
     // Delete a task permanently
 }
