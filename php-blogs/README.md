@@ -1,4 +1,4 @@
-# Movie Watchlist
+# Blog
 
 ### Instructions
 
