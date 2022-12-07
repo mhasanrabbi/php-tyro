@@ -1,12 +1,12 @@
 # Blog
 
-### Instructions
+### Installations
 
 - composer install
 - Copy the .env.example file to .env and update the database credentials
 - Run php -S localhost:8000 -t public/
 
-### Requirments: 
+### Features: 
 
 In this application,
 
