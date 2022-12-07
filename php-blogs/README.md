@@ -20,7 +20,7 @@ In this application,
 - If a user already registered with the email, then show "User already registered".
 - If a user provides wrong credentials, show "User email or password is incorrect. Please try again."
 
-- A user can add new movie to watchlist
-- A user can view the watchlist in a different route
-- A user can edit the watchlist
-- A user can delete the watchlist
+- A user can add new blog
+- A user can view the blog in a different route
+- A user can edit the blog
+- A user can delete the blog
